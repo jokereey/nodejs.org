@@ -70,7 +70,7 @@ pipeline {
 				sh 'pwd '
 				sh 'ls -l'
 				sh 'whoami'
-				//sh 'chmod og-rwx archive.tar.xz '
+				sh 'chmod og-rwx archive.tar.xz '
 				sh 'mv archive.tar.xz nodejs_$version.tar.xz'
 				}
 				echo ' done'
