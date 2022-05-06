@@ -60,7 +60,7 @@ pipeline {
                //sh 'npm version "1.8.0"'
                //sh 'npm publish'
 			  sh 'docker build . -f publish.dockerfile -t publish'
-			   sh 'docker run -d --volume /var/jenkins_home/workspace/volumes publish '
+			   sh 'docker run -d -it --volume /var/jenkins_home/workspace/volumes publish '
 			   echo ' done'
 
             }
