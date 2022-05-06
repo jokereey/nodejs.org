@@ -27,7 +27,11 @@ pipeline {
          stage('deploy') {
             steps {
                echo "deploying.."
-                 //sh 'docker build . -f dockerfile -t deploy'
+                 
+				 dir('docker') {
+				  echo "building image.."
+                    sh 'docker build . -f dockerfile -t deploy'
+                }
 				 
             }
         }
