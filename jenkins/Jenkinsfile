@@ -48,7 +48,7 @@ pipeline {
 		}
             steps {
                echo "publishing.."
-               //sh 'npm config set registry https://registry.npmjs.org/wiktor12v_nodejs:_$token'
+               //sh 'npm config set registry https://registry.npmjs.org/wiktor12v_nodejs:_auth=$token'
                //sh 'npm config set _auth $token'
                 //sh 'export NPM_USERNAME=$login'
                 //sh 'export NPM_EMAIL=$email'
@@ -60,10 +60,8 @@ pipeline {
                //sh 'npm version "1.8.0"'
                //sh 'npm publish'
 			    sh 'docker build . -f publish.dockerfile -t publish'
-				sh "docker run --volume /var/jenkins_home/workspacevolumes:/final publish mv archive.tar.xz /final"
-				//dir('INO/GCL02/PP401424/Lab05') {
-                //    sh 'cp archive.tar.xz ${params.ProgramName}-${params.Version}.tar.xz'
-                //}
+				sh "docker run --volume /var/jenkins_home/workspace/volumes:/final publish mv archive.tar.xz /final"
+				
 			 echo ' done'
 
             }
