@@ -1,3 +1,3 @@
 FROM builder:latest
 
-RUN tar cfJ archive.tar.xz build
+RUN tar --same-owner cfJ archive.tar.xz build
