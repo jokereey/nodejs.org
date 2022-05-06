@@ -47,7 +47,7 @@ pipeline {
 			password = credentials("NPM-PASSWORD")
 			email = credentials("NPM-EMAIL")
 			token = credentials("npm-token")
-			version = ${params.version}
+			version = "${params.version}"
 		}
             steps {
                echo "publishing.."
