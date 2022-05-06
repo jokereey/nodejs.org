@@ -28,10 +28,10 @@ pipeline {
             steps {
                echo "deploying.."
                  
-				 dir('docker') {
+				 
 				  echo "building image.."
                     sh 'docker build . -f deploy.dockerfile -t deploy'
-                }
+                
 				 
             }
         }
