@@ -66,8 +66,8 @@ pipeline {
 			    sh 'docker build . -f publish.dockerfile -t publish'
 				sh "docker run --volume /var/jenkins_home/workspace/volumes:/final publish mv archive.tar.xz /final"
 				sh 'pwd '
-				dir('..'){
-				
+				dir('../../volumes'){
+				sh 'mv archive.tar.gz $version.tar.gz'
 				}
 				echo ' done'
 
