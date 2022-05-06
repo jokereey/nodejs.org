@@ -47,17 +47,18 @@ pipeline {
 		}
             steps {
                echo "publishing.."
-               sh 'npm config set registry https://registry.npmjs.org/wiktor12v_nodejs:_$token'
-               sh 'npm config set _auth $token'
-                sh 'export NPM_USERNAME=$login'
-                sh 'export NPM_EMAIL=$email'
-                sh 'export NPM_PASSWORD=$password'
-                sh 'npm adduser <<!$login $password $email!'
+               //sh 'npm config set registry https://registry.npmjs.org/wiktor12v_nodejs:_$token'
+               //sh 'npm config set _auth $token'
+                //sh 'export NPM_USERNAME=$login'
+                //sh 'export NPM_EMAIL=$email'
+                //sh 'export NPM_PASSWORD=$password'
+                //sh 'npm adduser <<!$login $password $email!'
 
 //                sh 'git config --global user.email $email'
 //                sh 'git config --global user.name $login'
-               sh 'npm version "1.8.0"'
-               sh 'npm publish'
+               //sh 'npm version "1.8.0"'
+               //sh 'npm publish'
+			   echo ' done'
 
             }
         }
