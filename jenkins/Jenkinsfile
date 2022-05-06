@@ -14,13 +14,15 @@ pipeline {
         stage("build") {
             steps {
                 echo "building.."
-                   sh 'npm install'
-                   sh 'npm run build'
+                   //sh 'npm install'
+                   //sh 'npm run build'
+				   sh 'docker build . -f builder.dockerfile -t builder'
             }
         }
         stage('test') {
             steps {
-              sh 'npm test'
+             // sh 'npm test'
+			  sh 'docker build . -f test.dockerfile -t tester'
             }
         }
 
@@ -28,10 +30,10 @@ pipeline {
             steps {
                echo "deploying.."
                  
-				 
+				  sh 'docker run --volume /var/jenkins_home/workspace/volumes:/finalBuild builder mv -n build 
 				  echo "building image.."
                     sh 'docker build . -f deploy.dockerfile -t deploy'
-                
+					sh 'docker run --volume /var/jenkins_home/workspace/volumes/build:/build -d -p 3000:80 deploy'
 				 
             }
         }
