@@ -1,0 +1,59 @@
+pipeline {
+    agent any
+    tools{
+        nodejs "18.1.0"
+    }
+
+    stages {
+        stage("npm-login-cli"){
+        steps{
+//           sh 'npm install -g npm-cli-login'
+        sh 'npm -v'
+        }
+        }
+        stage("build") {
+            steps {
+                echo "building.."
+                   sh 'npm install'
+                   sh 'npm run build'
+            }
+        }
+        stage('test') {
+            steps {
+              sh 'npm test'
+            }
+        }
+
+         stage('deploy') {
+            steps {
+               echo "deploying.."
+                 //sh 'docker build . -f dockerfile -t deploy'
+				 
+            }
+        }
+        stage('publish') {
+
+		environment{
+			login = credentials("NPM-USERNAME")
+			password = credentials("NPM-PASSWORD")
+			email = credentials("NPM-EMAIL")
+			token = credentials("npm-token")
+		}
+            steps {
+               echo "publishing.."
+               sh 'npm config set registry https://registry.npmjs.org/wiktor12v_nodejs:_$token'
+               sh 'npm config set _auth $token'
+                sh 'export NPM_USERNAME=$login'
+                sh 'export NPM_EMAIL=$email'
+                sh 'export NPM_PASSWORD=$password'
+                sh 'npm adduser <<!$login $password $email!'
+
+//                sh 'git config --global user.email $email'
+//                sh 'git config --global user.name $login'
+               sh 'npm version "1.8.0"'
+               sh 'npm publish'
+
+            }
+        }
+    }
+}
