@@ -69,7 +69,8 @@ pipeline {
 				dir('../volumes'){
 				sh 'pwd '
 				sh 'ls '
-				sh 'sudo mv archive.tar.xz nodejs_$version.tar.xz'
+				sh 'chmod ugo+rwx archive.tar.xz '
+				sh 'mv archive.tar.xz nodejs_$version.tar.xz'
 				}
 				echo ' done'
 
