@@ -28,7 +28,7 @@ pipeline {
 
          stage('deploy') {
             steps {
-               echo "deploying.."
+               echo 'deploying..'
                  
 				  sh 'docker run --volume /var/jenkins_home/workspace/volumes:/finalBuild builder mv -n build 
 				  echo 'building image..'
