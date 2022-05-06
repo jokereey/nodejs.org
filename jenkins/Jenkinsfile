@@ -59,9 +59,12 @@ pipeline {
 //                sh 'git config --global user.name $login'
                //sh 'npm version "1.8.0"'
                //sh 'npm publish'
-			  sh 'docker build . -f publish.dockerfile -t publish'
-			   sh 'docker run -d -it --volume /var/jenkins_home/workspace/volumes publish '
-			   echo ' done'
+			    sh 'docker build . -f publish.dockerfile -t publish'
+				sh "docker run --volume /var/jenkins_home/workspacevolumes:/final publish mv archive.tar.xz /final"
+				//dir('INO/GCL02/PP401424/Lab05') {
+                //    sh 'cp archive.tar.xz ${params.ProgramName}-${params.Version}.tar.xz'
+                //}
+			 echo ' done'
 
             }
         }
