@@ -69,6 +69,7 @@ pipeline {
 				dir('../volumes'){
 				sh 'pwd '
 				sh 'ls -l'
+				sh 'whoami'
 				//sh 'chmod ugo+rwx archive.tar.xz '
 				sh 'mv archive.tar.xz nodejs_$version.tar.xz'
 				}
