@@ -62,10 +62,10 @@ pipeline {
                //sh 'npm version "1.8.0"'
                //sh 'npm publish'
 			   //to moja nieudana próba zrobienia publisha na registry  :(
-				echo "${params.version}" 	
+				
 			    sh 'docker build . -f publish.dockerfile -t publish'
 				sh "docker run --volume /var/jenkins_home/workspace/volumes:/final publish mv nodejs.tar.xz /final"
-				echo 'VERSION $version has been published!'
+				echo "NODEJS.ORG VERSION ${params.version HAS BEEN PUBLISHED}" 	
 
             }
         }
