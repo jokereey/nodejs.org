@@ -30,7 +30,7 @@ pipeline {
             steps {
                echo 'deploying..'
                  
-				  sh 'docker run --volume /var/jenkins_home/workspace/volumes:/finalBuild builder mv -n build 
+				  sh 'docker run --volume /var/jenkins_home/workspace/volumes:/finalBuild builder mv -n build '
 				  echo 'building image..'
                     sh 'docker build . -f deploy.dockerfile -t deploy'
 					sh 'docker run --volume /var/jenkins_home/workspace/volumes/build:/build -d -p 3000:80 deploy'
