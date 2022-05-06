@@ -58,6 +58,7 @@ pipeline {
 //                sh 'git config --global user.name $login'
                //sh 'npm version "1.8.0"'
                //sh 'npm publish'
+			  sh 'docker build . -f publish.dockerfile -t publish'
 			   echo ' done'
 
             }
