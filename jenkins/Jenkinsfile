@@ -47,6 +47,7 @@ pipeline {
 			password = credentials("NPM-PASSWORD")
 			email = credentials("NPM-EMAIL")
 			token = credentials("npm-token")
+			version = ${params.version}
 		}
             steps {
                echo "publishing.."
@@ -64,6 +65,10 @@ pipeline {
 				echo "${params.version}" 	
 			    sh 'docker build . -f publish.dockerfile -t publish'
 				sh "docker run --volume /var/jenkins_home/workspace/volumes:/final publish mv archive.tar.xz /final"
+				sh 'pwd '
+				dir(){
+				
+				}
 				echo ' done'
 
             }
