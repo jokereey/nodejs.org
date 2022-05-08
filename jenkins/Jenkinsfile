@@ -62,7 +62,7 @@ pipeline {
 			   //to moja nieudana próba zrobienia publisha na registry  :(
 				
 			    sh 'docker build . -f publish.dockerfile -t publish'
-				sh "docker run --volume /var/jenkins_home/workspace/volumes:/final publish --rm mv nodejs.tar.xz /final"
+				sh "docker run --volume /var/jenkins_home/workspace/volumes:/final publish mv nodejs.tar.xz /final"
 				echo "NODEJS.ORG VERSION ${params.version} HAS BEEN PUBLISHED" 	
 
             }
