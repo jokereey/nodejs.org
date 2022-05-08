@@ -22,7 +22,7 @@ pipeline {
         }
         stage('test') {
             steps {
-			  sh 'docker build . -f test.dockerfile -t tester -rm'
+			  sh 'docker build . -f test.dockerfile -t tester --rm'
 			  sh' docker run tester'
             }
         }
