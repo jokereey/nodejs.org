@@ -34,7 +34,7 @@ pipeline {
 				  echo 'building image..'
                     sh 'docker build . -f deploy.dockerfile -t deploy'
 					sh 'docker stop $(docker ps -a -q)'
-					sh 'docker rmi -f $(docker images -aq)'
+					//sh 'docker rmi -f $(docker images -aq)'
 					sh 'docker run --volume /var/jenkins_home/workspace/volumes/build:/build -d -p 3000:80 deploy'
 					
             }
