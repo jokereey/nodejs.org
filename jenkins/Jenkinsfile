@@ -30,7 +30,7 @@ pipeline {
             steps {
                echo 'deploying..'
                  
-				  sh 'docker run --volume /var/jenkins_home/workspace/volumes:/finalBuild builder mv -n build --rm /finalBuild '
+				  sh 'docker run --volume /var/jenkins_home/workspace/volumes:/finalBuild builder --rm mv -n build /finalBuild '
 				  echo 'building image..'
                  //   sh 'docker build . -f deploy.dockerfile -t deploy'
 					sh 'docker stop $(docker ps -a -q)'
