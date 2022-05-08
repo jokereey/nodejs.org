@@ -30,12 +30,12 @@ pipeline {
             steps {
                echo 'deploying..'
                  
-				  sh 'docker run --volume /var/jenkins_home/workspace/volumes:/finalBuild builder mv -n build -rm /finalBuild '
+				  sh 'docker run --volume /var/jenkins_home/workspace/volumes:/finalBuild builder mv -n build --rm /finalBuild '
 				  echo 'building image..'
                  //   sh 'docker build . -f deploy.dockerfile -t deploy'
 					sh 'docker stop $(docker ps -a -q)'
 					//sh 'docker rmi -f $(docker images -aq)'
-					sh 'docker run --volume /var/jenkins_home/workspace/volumes/build:/build -d -p 3000:80 deploy -rm'
+					sh 'docker run --volume /var/jenkins_home/workspace/volumes/build:/build -d -p 3000:80 deploy --rm'
 					
             }
         }
@@ -62,7 +62,7 @@ pipeline {
 			   //to moja nieudana próba zrobienia publisha na registry  :(
 				
 			    sh 'docker build . -f publish.dockerfile -t publish'
-				sh "docker run --volume /var/jenkins_home/workspace/volumes:/final publish mv nodejs.tar.xz /final"
+				sh "docker run --volume /var/jenkins_home/workspace/volumes:/final publish --rm mv nodejs.tar.xz /final"
 				echo "NODEJS.ORG VERSION ${params.version} HAS BEEN PUBLISHED" 	
 
             }
