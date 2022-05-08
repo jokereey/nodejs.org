@@ -23,6 +23,7 @@ pipeline {
         stage('test') {
             steps {
 			  sh 'docker build . -f test.dockerfile -t tester'
+			  sh' docker run tester'
             }
         }
          stage('deploy') {
