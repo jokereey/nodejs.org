@@ -16,19 +16,15 @@ pipeline {
         }
         stage("build") {
             steps {
-                echo "building.."
-                   //sh 'npm install'
-                   //sh 'npm run build'
+                echo "building.." 
 				   sh 'docker build . -f build.dockerfile -t builder'
             }
         }
         stage('test') {
             steps {
-             // sh 'npm test'
 			  sh 'docker build . -f test.dockerfile -t tester'
             }
         }
-
          stage('deploy') {
             steps {
                echo 'deploying..'
@@ -42,7 +38,6 @@ pipeline {
             }
         }
         stage('publish') {
-
 		environment{
 			login = credentials("NPM-USERNAME")
 			password = credentials("NPM-PASSWORD")
