@@ -30,18 +30,17 @@ pipeline {
             steps {
                echo 'deploying..'
                  
-				  sh 'docker run --volume /var/jenkins_home/workspace/volumes:/finalBuild builder mv -n build /finalBuild '
-				  echo 'building image..'
-				  sh 'ls'
-				  sh 'pwd'
-				 dir('../volumes') {
-                    sh 'docker build . -f dock2.dockerfile -t tester'
-					  sh 'docker build . -f deploy.dockerfile -t deploy'
-					sh 'docker stop $(docker ps -a -q)'
+				 sh 'docker run --volume /var/jenkins_home/workspace/volumes:/finalBuild builder mv -n build /finalBuild '
+				 echo 'building image..'
+				 sh 'ls'
+				 sh 'pwd'
+			
+				sh 'docker build . -f deploy.dockerfile -t deploy'
+				sh 'docker stop $(docker ps -a -q)'
 					//sh 'docker rmi -f $(docker images -aq)'
-					sh 'docker run --volume /var/jenkins_home/workspace/volumes/build:/build -d -p 3000:80 deploy --rm'
+				sh 'docker run --volume /var/jenkins_home/workspace/volumes/build:/build -d -p 3000:80 deploy --rm'
 					
-                }
+             
                   
             }
         }
