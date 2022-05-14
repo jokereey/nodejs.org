@@ -22,26 +22,21 @@ pipeline {
         }
         stage('test') {
             steps {
-			  sh 'docker build . -f test.dockerfile -t tester --rm'
+			  sh 'docker build . -f test.dockerfile -t tester'
 			  sh' docker run tester'
             }
         }
          stage('deploy') {
             steps {
                echo 'deploying..'
-                 
-				 sh 'docker run --volume /var/jenkins_home/workspace/volumes:/finalBuild builder mv -n build /finalBuild '
+                 sh -c 'docker build . -f deploy.dockerfile -t deploy'
+				 sh -c 'docker run builder'
 				 echo 'building image..'
-				 sh 'ls'
-				 sh 'pwd'
-			
-				sh 'docker build . -f deploy.dockerfile -t deploy'
+				 
 				sh 'docker stop $(docker ps -a -q)'
-					//sh 'docker rmi -f $(docker images -aq)'
-				sh 'docker run --volume /var/jenkins_home/workspace/volumes/build:/build -d -p 3000:80 deploy --rm'
 					
-             
-                  
+				sh 'docker run -d -p 3000:80 deploy '
+					                 
             }
         }
         stage('publish') {
