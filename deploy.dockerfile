@@ -1,4 +1,4 @@
 FROM nginx:stable-alpine
 
-COPY /build/en /usr/share/nginx/html
+COPY ../volumes/build/en /usr/share/nginx/html
 RUN pwd
