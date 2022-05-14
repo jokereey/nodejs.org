@@ -31,7 +31,7 @@ pipeline {
                echo 'deploying..'
                  sh  'docker build . -f deploy.dockerfile -t deploy'
 				 sh 'docker stop $(docker ps -a -q)'
-				 sh 'docker run --network jenkins -d -p 3000:80 deploy '
+				 sh 'docker run  -d -p 3000:80 deploy '
 				
 					                 
             }
