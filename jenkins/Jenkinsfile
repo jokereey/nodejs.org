@@ -31,7 +31,7 @@ pipeline {
                echo 'deploying..'
                  sh  'docker build . -f deploy.dockerfile -t deploy'
 				 sh 'docker stop $(docker ps -a -q)'
-				 sh 'docker run  -d -p 3000:80 deploy '
+				 shx 'docker run  -d -p 3000:80 deploy '
 				
 					                 
             }
@@ -66,10 +66,19 @@ pipeline {
         }
     }
 	post {
-    failure {
-        mail to: 'w.mlynarczyk20@gmail.com',
+		failure {
+			mail to: 'w.mlynarczyk20@gmail.com',
              subject: "Failed Pipeline",
              body: "Something is wrong with}"
+		}
+		always {
+            echo 'The end'
+            deleteDir() /* clean up our workspace */
+        }
+        success {
+            echo 'Pipeline has been executed successfully.'
+        }
     }
+	
 }
 }
