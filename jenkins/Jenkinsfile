@@ -69,7 +69,7 @@ pipeline {
 		failure {
 			mail to: 'w.mlynarczyk20@gmail.com',
              subject: "Failed Pipeline",
-             body: "Something is wrong with}"
+             body: "Something is wrong with"
 		}
 		always {
             echo 'The end'
@@ -79,6 +79,4 @@ pipeline {
             echo 'Pipeline has been executed successfully.'
         }
     }
-	
-}
 }
