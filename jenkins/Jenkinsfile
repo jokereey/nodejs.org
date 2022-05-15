@@ -1,8 +1,6 @@
 pipeline {
     agent any
-    tools{
-        nodejs "18.1.0"
-    }
+   
 	parameters {
     string(name: 'version', defaultValue: '', description: 'app version')
 }
@@ -11,7 +9,7 @@ pipeline {
         stage("npm-login-cli"){
         steps{
 //           sh 'npm install -g npm-cli-login'
-        sh 'npm -v'
+        //sh 'npm -v'
         }
         }
         stage("build") {
@@ -74,7 +72,7 @@ pipeline {
 		}
 		always {
             echo 'The end'
-            deleteDir() /* clean up our workspace */
+           // deleteDir() /* clean up our workspace */
         }
         success {
             echo 'Pipeline has been executed successfully.'
