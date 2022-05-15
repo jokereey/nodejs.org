@@ -65,4 +65,11 @@ pipeline {
             }
         }
     }
+	post {
+    failure {
+        mail to: 'w.mlynarczyk20@gmail.com',
+             subject: "Failed Pipeline",
+             body: "Something is wrong with}"
+    }
+}
 }
